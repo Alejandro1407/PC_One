@@ -1,0 +1,21 @@
+  public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+
+
+public Byte[] ImageToArrayByte(){
+	 Image image = Image.FromFile("SaveFileDialog.FileName");//Obtener imagen con un savefiledialog filename o con otro metodo
+                MemoryStream Memory = new MemoryStream();
+                image.Save(Memory, ImageFormat.Jpeg);
+                ImgBytes = Memory.ToArray();
+		return ImgBytes;
+}
+//Para ASP.Net
+Converit un Byte[] Obtenido desde la Base a un imagen visible
+
+<img src="data:image/png;base64,@Convert.ToBase64String(producto.imagen_producto)"/>
+
+

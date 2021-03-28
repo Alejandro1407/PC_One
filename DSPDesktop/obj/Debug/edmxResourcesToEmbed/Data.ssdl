@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DSPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_cargo" Type="varchar" MaxLength="25" />
+    <Property Name="descripcion_cargo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_categoria" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="400" />
+    <Property Name="imagen_categoria" Type="image" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="150" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="contrasena" Type="varchar" MaxLength="50" />
+    <Property Name="telefono" Type="varchar" MaxLength="9" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DUI" Type="varchar" MaxLength="10" />
+    <Property Name="nombres" Type="varchar" MaxLength="150" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="telefono" Type="varchar" MaxLength="9" />
+    <Property Name="edad" Type="int" />
+    <Property Name="salario" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="fecha_nac" Type="date" />
+    <Property Name="id_cargo" Type="int" />
+    <Property Name="contrasena" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="cantidad" Type="int" />
+    <Property Name="modelo" Type="varchar" MaxLength="50" />
+    <Property Name="costo" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="descripcion" Type="varchar" MaxLength="400" />
+    <Property Name="precio_venta" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="fecha_ingreso" Type="datetime" />
+    <Property Name="imagen_producto" Type="image" />
+    <Property Name="id_categoria" Type="int" />
+  </EntityType>
+  <Association Name="FK_ProductoCategoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DSPModelStoreContainer">
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ProductoCategoria" Association="Self.FK_ProductoCategoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

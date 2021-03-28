@@ -1,0 +1,13 @@
+Credenciales Desktop luego de ejecutar el PcOne.SQL
+
+Administrador@gmail.com
+Password1
+
+Se eliminio la opcion de ventas dentro la aplicacion
+
+Web
+
+https://drive.google.com/open?id=19KZf2pexVNW2wFQk5tnqVPFQL4_rOOz9
+
+La apliacion web ya muestra los productos y categorias segun se ingresen dentro de la desktop
+Permite registro e inicio de sesion ademas de contar con la funcion de agregar al carrito
